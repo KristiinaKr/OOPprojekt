@@ -16,7 +16,10 @@ public class algus {
 
         double katkineEsimesest = ThreadLocalRandom.current().nextDouble(0.5,1);
 
+        ÜL2 ülesanne2 = new ÜL2((int) Math.round(Math.random()*10)+1,
+                (int) Math.round(Math.random()*10)+1,(int) Math.round(Math.random()*10)+1);
 
-
+        //ülesanne2.lahendus2();
+        System.out.println(ülesanne2.lahendus2());
     }
 }
