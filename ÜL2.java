@@ -47,9 +47,14 @@ public class ÜL2 {
         int esimene = 1000/jagubEsimesega;
         int teine = 1000/jagubTeisega;
         int kolmas = 1000/jagubKolmandaga;
+        int esimeneTeine = 1000/jagubEsimesega/jagubTeisega;
+        int esimeneKolmas = 1000/jagubEsimesega/jagubKolmandaga;
+        int teineKolmas = 1000/jagubTeisega/jagubKolmandaga;
+        int esimeneTeineKolmas = 1000/jagubEsimesega/jagubTeisega/jagubKolmandaga;
 
-      //  double esimeneTeine =
-        double lahendus = 0.543;
+        double valem = esimene/1000.0 + teine/1000.0 + kolmas/1000.0
+                - esimeneTeine/1000.0 - esimeneKolmas/1000.0 - teineKolmas/1000.0 + esimeneTeineKolmas/1000.0;
+        double lahendus = Math.round(valem * 1000.0) / 1000.0;
         String kasutajalahendus = "0";
         while (Double.parseDouble(kasutajalahendus) != lahendus) {
             kasutajalahendus = JOptionPane.showInputDialog(null,
@@ -63,7 +68,7 @@ public class ÜL2 {
                 break;
             } else {
                 JOptionPane.showMessageDialog(null,
-                        "Sinu vastus ei ole õige! \n" + "Vihje: kasuta Bayes'i valemit!",
+                        "Sinu vastus ei ole õige! \n" + "Vihje: Tinglik tõenäosus!",
                         "Vale vastus",
                         JOptionPane.WARNING_MESSAGE);
                 String valik = JOptionPane.showInputDialog(null,
