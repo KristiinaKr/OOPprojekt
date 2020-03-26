@@ -19,8 +19,10 @@ public class testKlass {
         //ülesanne1.lahendus();
 
 
-       // ÜL2 ülesanne2 = new ÜL2((int) Math.round(Math.random() * 10) + 1,
-             //   (int) Math.round(Math.random() * 10) + 1, (int) Math.round(Math.random() * 10) + 1);
+        // ÜL2 ülesanne2 = new ÜL2((int) Math.round(Math.random() * 10) + 1,
+        //   (int) Math.round(Math.random() * 10) + 1, (int) Math.round(Math.random() * 10) + 1);
+
+        //Etteantud muutujatega testimiseks, õige vastus on 0.054
         ÜL2 ülesanne2 = new ÜL2(3, 5, 7);
 
         //ülesanne2.lahendus2();
@@ -28,7 +30,7 @@ public class testKlass {
 
 
         String ülesandeValik = JOptionPane.showInputDialog(null,
-                "Sisesta, mitmendat ülesannet soovid lahendada (1-2)", "Alustame!", JOptionPane.QUESTION_MESSAGE);
+                "Sisesta, mitmendat ülesannet soovid lahendada (1-3)", "Alustame!", JOptionPane.QUESTION_MESSAGE);
 
         if (Integer.parseInt(ülesandeValik) == 1) ülesanne1.lahendus();
         if (Integer.parseInt(ülesandeValik) == 2) ülesanne2.lahendus2();
