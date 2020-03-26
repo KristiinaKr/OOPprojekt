@@ -19,12 +19,12 @@ public class testKlass {
         //ülesanne1.lahendus();
 
 
-        ÜL2 ülesanne2 = new ÜL2((int) Math.round(Math.random() * 10) + 1,
-                (int) Math.round(Math.random() * 10) + 1, (int) Math.round(Math.random() * 10) + 1);
+       // ÜL2 ülesanne2 = new ÜL2((int) Math.round(Math.random() * 10) + 1,
+             //   (int) Math.round(Math.random() * 10) + 1, (int) Math.round(Math.random() * 10) + 1);
+        ÜL2 ülesanne2 = new ÜL2(3, 5, 7);
 
         //ülesanne2.lahendus2();
-        System.out.println(ülesanne2.lahendus2());
-
+        //System.out.println(ülesanne2.lahendus2());
 
 
         String ülesandeValik = JOptionPane.showInputDialog(null,

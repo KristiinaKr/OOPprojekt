@@ -49,7 +49,31 @@ public class ÜL2 {
         int kolmas = 1000/jagubKolmandaga;
 
       //  double esimeneTeine =
+        double lahendus = 0.543;
+        String kasutajalahendus = "0";
+        while (Double.parseDouble(kasutajalahendus) != lahendus) {
+            kasutajalahendus = JOptionPane.showInputDialog(null,
+                    "Juhuslikult valitakse arv ühest tuhandeni(kaasa arvatud). Leia\n" +
+                            "tõenäosus, et see jagub vähemalt ühega arvudest " + jagubEsimesega +
+                            ", " + jagubTeisega + " ja " + jagubKolmandaga + ".",
+                    JOptionPane.QUESTION_MESSAGE);
 
-        return esimene;
+            if (Double.parseDouble(kasutajalahendus) == lahendus) {
+                JOptionPane.showMessageDialog(null, "Tubli! " + "\n" + " Sinu vastus on õige!");
+                break;
+            } else {
+                JOptionPane.showMessageDialog(null,
+                        "Sinu vastus ei ole õige! \n" + "Vihje: kasuta Bayes'i valemit!",
+                        "Vale vastus",
+                        JOptionPane.WARNING_MESSAGE);
+                String valik = JOptionPane.showInputDialog(null,
+                        "Kas soovid ülesannet uuesti proovida (jah/ei)?", JOptionPane.QUESTION_MESSAGE);
+                if (valik.equals("ei")) break;
+            }
+        }
+        JOptionPane.showMessageDialog(null, "Õige vastus on: " + lahendus);
+        System.exit(0);
+        return lahendus;
+
     }
 }
