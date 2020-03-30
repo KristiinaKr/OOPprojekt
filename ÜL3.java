@@ -1,4 +1,6 @@
 package OOPprojekt;
+import java.util.*;
+
 
 public class ÜL3 {
 
@@ -45,9 +47,32 @@ public class ÜL3 {
     }
 
     public double lahendus() {
-        double tõenäolsus;
-        tõenäolsus = 5*8;
+        int nCr;
+        double tõenäolsusedJuku;
+        double tõenäolsusedMiku;
+        double võrdseArvuTõenäolsus = 0;
 
-        return tõenäolsus;
+        for (int i = 0; i <= õunteArv; i++) {
+
+            nCr = fact(õunteArv) / (fact(i) * fact(õunteArv-i));
+
+            tõenäolsusedJuku = Math.round(nCr * Math.pow(jukuTäpsus, i) * Math.pow(1-jukuTäpsus, õunteArv-i)*10000)/10000.0;
+            tõenäolsusedMiku = Math.round(nCr * Math.pow(mikuTäpsus, i) * Math.pow(1-mikuTäpsus, õunteArv-i)*10000)/10000.0;
+
+            võrdseArvuTõenäolsus += tõenäolsusedJuku * tõenäolsusedMiku;
+        }
+        System.out.println(Math.round(võrdseArvuTõenäolsus*1000)/1000.0);
+        return Math.round(võrdseArvuTõenäolsus*1000)/1000.0;
+    }
+
+    //abimeetod faktoriaali arvutamiseks
+    static int fact(int n)
+    {
+        int i, f = 1;
+        for(i = 1; i <= n; i++)
+        {
+            f = f * i;
+        }
+        return f;
     }
 }

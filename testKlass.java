@@ -29,10 +29,21 @@ public class testKlass {
         //System.out.println(ülesanne2.lahendus2());
 
 
+
+        int õunteArv = (int) Math.round(ThreadLocalRandom.current().nextDouble(0.2, 0.6) * 10);
+        double jukuTäpsus = Math.round(ThreadLocalRandom.current().nextDouble(0.1, 0.9) * 10) / 10.0;
+        double mikuTäpsus = Math.round(ThreadLocalRandom.current().nextDouble(0.1, 0.9) * 10) / 10.0;
+
+
+        ÜL3 ülesanne3 = new ÜL3(õunteArv,jukuTäpsus,mikuTäpsus);
+
+
+
         String ülesandeValik = JOptionPane.showInputDialog(null,
-                "Sisesta, mitmendat ülesannet soovid lahendada (1-2)", "Alustame!", JOptionPane.QUESTION_MESSAGE);
+                "Sisesta, mitmendat ülesannet soovid lahendada (1-3)", "Alustame!", JOptionPane.QUESTION_MESSAGE);
 
         if (Integer.parseInt(ülesandeValik) == 1) ülesanne1.lahendus();
         if (Integer.parseInt(ülesandeValik) == 2) ülesanne2.lahendus2();
+        if(Integer.parseInt(ülesandeValik) == 3) ülesanne3.lahendus();
     }
 }
