@@ -54,14 +54,17 @@ public class ÜL3 {
 
         for (int i = 0; i <= õunteArv; i++) {
 
+            //kombinatsioonide leidmise valem
             nCr = fact(õunteArv) / (fact(i) * fact(õunteArv-i));
 
+            //Bernoulli valemid mõlema viskaja jaoks
             tõenäolsusedJuku = Math.round(nCr * Math.pow(jukuTäpsus, i) * Math.pow(1-jukuTäpsus, õunteArv-i)*10000)/10000.0;
             tõenäolsusedMiku = Math.round(nCr * Math.pow(mikuTäpsus, i) * Math.pow(1-mikuTäpsus, õunteArv-i)*10000)/10000.0;
 
             võrdseArvuTõenäolsus += tõenäolsusedJuku * tõenäolsusedMiku;
         }
         System.out.println(Math.round(võrdseArvuTõenäolsus*1000)/1000.0);
+
         return Math.round(võrdseArvuTõenäolsus*1000)/1000.0;
     }
 
