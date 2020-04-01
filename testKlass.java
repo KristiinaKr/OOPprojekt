@@ -18,16 +18,7 @@ public class testKlass {
         //ÜL1 ülesanne1 = new ÜL1(0.6, 0.3, 0.3);
         //ülesanne1.lahendus();
 
-
-        // ÜL2 ülesanne2 = new ÜL2((int) Math.round(Math.random() * 10) + 1,
-        //   (int) Math.round(Math.random() * 10) + 1, (int) Math.round(Math.random() * 10) + 1);
-
-        //Etteantud muutujatega testimiseks, õige vastus on 0.054
         ÜL2 ülesanne2 = new ÜL2(3, 5, 7);
-
-        //ülesanne2.lahendus2();
-        //System.out.println(ülesanne2.lahendus2());
-
 
 
         int õunteArv = (int) Math.round(ThreadLocalRandom.current().nextDouble(0.2, 0.6) * 10);

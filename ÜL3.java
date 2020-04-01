@@ -2,7 +2,12 @@ package OOPprojekt;
 import java.util.*;
 
 
-public class ÜL3 {
+public class ÜL3 extends Muutujad {
+
+    // Õunte arv, Juku täpsus, Miku täpsus
+    public ÜL3(double esimeneMuutuja, double teineMuutuja, double kolmasMuutuja) {
+        super(esimeneMuutuja, teineMuutuja, kolmasMuutuja);
+    }
 
     /**
     Tekst: "Jukul ja Mikul on mõlemal " + õunteArv + " õuna. Peale õunte söömist viskavad nad õunasüdametega
@@ -12,39 +17,6 @@ public class ÜL3 {
 
     // KUIDAS GETTEREID JA SETTEREID ÄRA KASUTADA?
 
-    private int õunteArv;
-    private double jukuTäpsus;
-    private double mikuTäpsus;
-
-    public ÜL3(int õunteArv, double jukuTäpsus, double mikuTäpsus) {
-        this.õunteArv = õunteArv;
-        this.jukuTäpsus = jukuTäpsus;
-        this.mikuTäpsus = mikuTäpsus;
-    }
-
-    public int getÕunteArv() {
-        return õunteArv;
-    }
-
-    public void setÕunteArv(int õunteArv) {
-        this.õunteArv = õunteArv;
-    }
-
-    public double getJukuTäpsus() {
-        return jukuTäpsus;
-    }
-
-    public void setJukuTäpsus(double jukuTäpsus) {
-        this.jukuTäpsus = jukuTäpsus;
-    }
-
-    public double getMikuTäpsus() {
-        return mikuTäpsus;
-    }
-
-    public void setMikuTäpsus(double mikuTäpsus) {
-        this.mikuTäpsus = mikuTäpsus;
-    }
 
     public double lahendus() {
         int nCr;
@@ -52,14 +24,14 @@ public class ÜL3 {
         double tõenäolsusedMiku;
         double võrdseArvuTõenäolsus = 0;
 
-        for (int i = 0; i <= õunteArv; i++) {
+        for (int i = 0; i <= getEsimeneMuutuja(); i++) {
 
             //kombinatsioonide leidmise valem
-            nCr = fact(õunteArv) / (fact(i) * fact(õunteArv-i));
+            nCr = fact((int) getEsimeneMuutuja()) / (fact(i) * fact((int) (getEsimeneMuutuja()-i)));
 
             //Bernoulli valemid mõlema viskaja jaoks
-            tõenäolsusedJuku = Math.round(nCr * Math.pow(jukuTäpsus, i) * Math.pow(1-jukuTäpsus, õunteArv-i)*10000)/10000.0;
-            tõenäolsusedMiku = Math.round(nCr * Math.pow(mikuTäpsus, i) * Math.pow(1-mikuTäpsus, õunteArv-i)*10000)/10000.0;
+            tõenäolsusedJuku = Math.round(nCr * Math.pow(getTeineMuutuja(), i) * Math.pow(1-getTeineMuutuja(), getEsimeneMuutuja()-i)*10000)/10000.0;
+            tõenäolsusedMiku = Math.round(nCr * Math.pow(getKolmasMuutuja(), i) * Math.pow(1-getKolmasMuutuja(), getEsimeneMuutuja()-i)*10000)/10000.0;
 
             võrdseArvuTõenäolsus += tõenäolsusedJuku * tõenäolsusedMiku;
         }
