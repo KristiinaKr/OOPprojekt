@@ -1,21 +1,19 @@
 package OOPprojekt;
-import java.util.*;
 
 
-public class ÜL3 extends Muutujad {
+public class ÜL3 extends Ülesanne {
+
 
     // Õunte arv, Juku täpsus, Miku täpsus
-    public ÜL3(double esimeneMuutuja, double teineMuutuja, double kolmasMuutuja) {
-        super(esimeneMuutuja, teineMuutuja, kolmasMuutuja);
+    public ÜL3(double esimeneMuutuja, double teineMuutuja, double kolmasMuutuja, String pealkiri, String ülesandePüstitus, String vihje) {
+        super(esimeneMuutuja, teineMuutuja, kolmasMuutuja, pealkiri, ülesandePüstitus, vihje);
     }
 
     /**
-    Tekst: "Jukul ja Mikul on mõlemal " + õunteArv + " õuna. Peale õunte söömist viskavad nad õunasüdametega
-    paberikorvi täpsust. Juku tabab tõenäolsusega " + jukuTäpsus + " ning Miku tabab tõenäolsusega " + mikuTäpsus
-    ". Leia tõenäolsus, et nad saavad võrdse arvu tabamusi.
+     * Tekst: "Jukul ja Mikul on mõlemal " + õunteArv + " õuna. Peale õunte söömist viskavad nad õunasüdametega
+     * paberikorvi täpsust. Juku tabab tõenäolsusega " + jukuTäpsus + " ning Miku tabab tõenäolsusega " + mikuTäpsus
+     * ". Leia tõenäolsus, et nad saavad võrdse arvu tabamusi.
      */
-
-    // KUIDAS GETTEREID JA SETTEREID ÄRA KASUTADA?
 
 
     public double lahendus() {
@@ -27,27 +25,33 @@ public class ÜL3 extends Muutujad {
         for (int i = 0; i <= getEsimeneMuutuja(); i++) {
 
             //kombinatsioonide leidmise valem
-            nCr = fact((int) getEsimeneMuutuja()) / (fact(i) * fact((int) (getEsimeneMuutuja()-i)));
+            nCr = fact((int) getEsimeneMuutuja()) / (fact(i) * fact((int) (getEsimeneMuutuja() - i)));
 
             //Bernoulli valemid mõlema viskaja jaoks
-            tõenäolsusedJuku = Math.round(nCr * Math.pow(getTeineMuutuja(), i) * Math.pow(1-getTeineMuutuja(), getEsimeneMuutuja()-i)*10000)/10000.0;
-            tõenäolsusedMiku = Math.round(nCr * Math.pow(getKolmasMuutuja(), i) * Math.pow(1-getKolmasMuutuja(), getEsimeneMuutuja()-i)*10000)/10000.0;
+            tõenäolsusedJuku = Math.round(nCr * Math.pow(getTeineMuutuja(), i)
+                    * Math.pow(1 - getTeineMuutuja(), getEsimeneMuutuja() - i) * 10000) / 10000.0;
+
+            tõenäolsusedMiku = Math.round(nCr * Math.pow(getKolmasMuutuja(), i)
+                    * Math.pow(1 - getKolmasMuutuja(), getEsimeneMuutuja() - i) * 10000) / 10000.0;
 
             võrdseArvuTõenäolsus += tõenäolsusedJuku * tõenäolsusedMiku;
         }
-        System.out.println(Math.round(võrdseArvuTõenäolsus*1000)/1000.0);
+        System.out.println(Math.round(võrdseArvuTõenäolsus * 1000) / 1000.0);
 
-        return Math.round(võrdseArvuTõenäolsus*1000)/1000.0;
+        return Math.round(võrdseArvuTõenäolsus * 1000) / 1000.0;
     }
 
+
     //abimeetod faktoriaali arvutamiseks
-    static int fact(int n)
-    {
+    static int fact(int n) {
         int i, f = 1;
-        for(i = 1; i <= n; i++)
-        {
+        for (i = 1; i <= n; i++) {
             f = f * i;
         }
         return f;
     }
 }
+
+
+
+
