@@ -3,7 +3,6 @@ package OOPprojekt;
 
 public class ÜL3 extends Ülesanne {
 
-
     // Õunte arv, Juku täpsus, Miku täpsus
     public ÜL3(double esimeneMuutuja, double teineMuutuja, double kolmasMuutuja, String pealkiri, String ülesandePüstitus, String vihje) {
         super(esimeneMuutuja, teineMuutuja, kolmasMuutuja, pealkiri, ülesandePüstitus, vihje);
@@ -14,7 +13,6 @@ public class ÜL3 extends Ülesanne {
      * paberikorvi täpsust. Juku tabab tõenäolsusega " + jukuTäpsus + " ning Miku tabab tõenäolsusega " + mikuTäpsus
      * ". Leia tõenäolsus, et nad saavad võrdse arvu tabamusi.
      */
-
 
     public double lahendus() {
         int nCr;

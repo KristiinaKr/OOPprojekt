@@ -56,10 +56,10 @@ public class Kasutajaliides {
         } else if (ülesandeValik.equals("4")){
             String pealkiri4 = "Ülesanne 4";
             String vihje4 = "Keskväärtuse leidmiseks ei pea tingimata jaotust leidma!";
-            int esimeneValge = 5;
-            int esimeneMust = 3;
-            int teineValge = 2;
-            int teineMust = 4;
+            int esimeneValge = (int) (Math.random()* 7) + 2;
+            int esimeneMust = (int) (Math.random()* 7) + 2;
+            int teineValge = (int) (Math.random()* 7) + 2;
+            int teineMust = (int) (Math.random()* 7) + 2;
 
             String ülesndePüstitus4 = "Laual on kaks urni, milles ühes on " + esimeneValge + " valget ja " +
                    esimeneMust + " musta kuuli ning \nteises on "+ teineValge + " valget ja " + teineMust +
@@ -99,7 +99,7 @@ public class Kasutajaliides {
                         "Kas soovid mõnda teist ülesannet proovida (jah/ei)?", JOptionPane.QUESTION_MESSAGE);
                 if (valik.equals("jah")) {
                     ülesandeValik = JOptionPane.showInputDialog(null,
-                            "Sisesta, mitmendat ülesannet soovid lahendada (1-4)", "Uus ülesanne", JOptionPane.QUESTION_MESSAGE);
+                            "Sisesta, mitmendat ülesannet soovid lahendada (1-5)", "Uus ülesanne", JOptionPane.QUESTION_MESSAGE);
                     kasutajaLiides(ülesandeValik);
                 }
                 break;
@@ -116,7 +116,7 @@ public class Kasutajaliides {
                             "Kas soovid mõnda teist ülesannet proovida (jah/ei)?", JOptionPane.QUESTION_MESSAGE);
                     if (valik.equals("jah")) {
                         ülesandeValik = JOptionPane.showInputDialog(null,
-                                "Sisesta, mitmendat ülesannet soovid lahendada (1-4)", "Uus ülesanne", JOptionPane.QUESTION_MESSAGE);
+                                "Sisesta, mitmendat ülesannet soovid lahendada (1-5)", "Uus ülesanne", JOptionPane.QUESTION_MESSAGE);
                         kasutajaLiides(ülesandeValik);
                     }
                     break;

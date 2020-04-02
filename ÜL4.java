@@ -1,7 +1,6 @@
 package OOPprojekt;
 
 public class ÜL4 extends Ülesanne{
-    // tegelen sellega hiljeem xd.
     private int neljasMuutja;
 
     public ÜL4(double esimeneMuutuja, double teineMuutuja, double kolmasMuutuja, int neljasMuutja, String pealkiri, String ülesandePüstitus, String vihje) {
