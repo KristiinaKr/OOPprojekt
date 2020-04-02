@@ -8,7 +8,7 @@ public class testKlass {
 
     public static void main(String[] args) {
 
-        String pealkiri1 = "Ülesanne1";
+     /*   String pealkiri1 = "Ülesanne1";
         String vihje1 = "Vihje: Kasuta Bayes'i valemit!";
         double katkineEsimesest = Math.round(ThreadLocalRandom.current().nextDouble(0.6, 0.9) * 10) / 10.0;
         double katkineTeisest = Math.round(ThreadLocalRandom.current().nextDouble(0.1, 0.5) * 10) / 10.0;
@@ -20,14 +20,12 @@ public class testKlass {
 
         ÜL1 ülesanne1 = new ÜL1(katkineEsimesest, katkineTeisest, katkineKolmandast, pealkiri1, ülesandePüstitus1, vihje1);
 
+        String pealkiri2 = "Ülesanne2";*/
+      //  Kasutajaliides ül2 = new Kasutajaliides(pealkiri2);
+       // int
+       // ÜL2 ülesanne2 = new ÜL2()
 
-
-        //ÜL2 ülesanne2 = new ÜL2(katkineEsimesest, katkineTeisest, katkineKolmandast);
-
-        // Kas sul ongi samad muutujad kui 1.ül?
-
-
-        String pealkiri3 = "Ülesanne3";
+        /*String pealkiri3 = "Ülesanne3";
         String vihje3 = "Kasuta Bernoulli valemit eraldi mõlema poisi kõigi tabamuste võimaluste korral.";
         int õunteArv = (int) Math.round(ThreadLocalRandom.current().nextDouble(0.2, 0.6) * 10);
         double jukuTäpsus = Math.round(ThreadLocalRandom.current().nextDouble(0.1, 0.9) * 10) / 10.0;
@@ -37,14 +35,15 @@ public class testKlass {
                 "paberikorvi täpsust. Juku tabab tõenäolsusega " + jukuTäpsus + " ning Miku tabab tõenäolsusega " + mikuTäpsus +
                 ". Leia tõenäolsus, et nad saavad võrdse arvu tabamusi.";
 
-        ÜL3 ülesanne3 = new ÜL3(õunteArv, jukuTäpsus, mikuTäpsus, pealkiri3, ülesandePüstitus3, vihje3);
-
-
-
+        ÜL3 ülesanne3 = new ÜL3(õunteArv, jukuTäpsus, mikuTäpsus, pealkiri3, ülesandePüstitus3, vihje3);*/
 
         String ülesandeValik = JOptionPane.showInputDialog(null,
                 "Sisesta, mitmendat ülesannet soovid lahendada (1-3)", "Alustame!", JOptionPane.QUESTION_MESSAGE);
 
+        Kasutajaliides test = new Kasutajaliides(ülesandeValik);
+
+        test.kasutajaLiides(ülesandeValik);
+/*
         Ülesanne lahendatavÜlesanne = null;
 
         if (Integer.parseInt(ülesandeValik) == 1) lahendatavÜlesanne = ülesanne1;
@@ -73,6 +72,6 @@ public class testKlass {
             }
         }
         JOptionPane.showMessageDialog(null, "Õige vastus on: " + lahendatavÜlesanne.lahendus());
-        System.exit(0);
+        System.exit(0);*/
     }
 }

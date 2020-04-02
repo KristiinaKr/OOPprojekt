@@ -15,6 +15,7 @@ public class ÜL2 extends Ülesanne {
      * (Praktikum 2.6, tinglik tõenäosus)
      */
 
+    // test
 
     public double lahendus() {
         int esimene = (int) (1000 / getEsimeneMuutuja());
@@ -28,7 +29,7 @@ public class ÜL2 extends Ülesanne {
         double valem = esimene / 1000.0 + teine / 1000.0 + kolmas / 1000.0
                 - esimeneTeine / 1000.0 - esimeneKolmas / 1000.0 - teineKolmas / 1000.0 + esimeneTeineKolmas / 1000.0;
         double lahendus = Math.round(valem * 1000.0) / 1000.0;
-        String kasutajalahendus = "0";
+        /*String kasutajalahendus = "0";
         while (Double.parseDouble(kasutajalahendus) != lahendus) {
             kasutajalahendus = JOptionPane.showInputDialog(null,
                     "Juhuslikult valitakse arv ühest tuhandeni(kaasa arvatud). Leia\n" +
@@ -50,7 +51,7 @@ public class ÜL2 extends Ülesanne {
             }
         }
         JOptionPane.showMessageDialog(null, "Õige vastus on: " + lahendus);
-        System.exit(0);
+        System.exit(0);*/
         return lahendus;
 
     }
