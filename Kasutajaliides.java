@@ -14,6 +14,7 @@ public class Kasutajaliides {
     public void kasutajaLiides(String ülesandeValik) {
 
         Ülesanne lahendatavÜlesanne = null;
+
         if (ülesandeValik.equals("2")) {
             int esimeneArv = 3;
             int teineArv = 5;
@@ -51,8 +52,8 @@ public class Kasutajaliides {
                     ". Leia tõenäolsus, et nad saavad võrdse arvu tabamusi.\n";
 
             lahendatavÜlesanne = new ÜL3(õunteArv, jukuTäpsus, mikuTäpsus, pealkiri3, ülesandePüstitus3, vihje3);
-
         }
+
 
         String kasutajalahendus = "0";
         assert lahendatavÜlesanne != null;
@@ -71,7 +72,6 @@ public class Kasutajaliides {
                     kasutajaLiides(ülesandeValik);
                 }
                 break;
-
             } else {
                 JOptionPane.showMessageDialog(null,
                         "Sinu vastus ei ole õige! \n" + lahendatavÜlesanne.getVihje(),
