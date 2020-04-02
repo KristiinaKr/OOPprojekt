@@ -12,6 +12,7 @@ public class Kasutajaliides {
     }
 
     public void kasutajaLiides(String ülesandeValik) {
+
         Ülesanne lahendatavÜlesanne = null;
         if (ülesandeValik.equals("2")) {
             int esimeneArv = 3;
@@ -20,7 +21,7 @@ public class Kasutajaliides {
 
             String ülesandepüstitus2 = "Juhuslikult valitakse arv ühest tuhandeni(kaasa arvatud). Leia\n" +
                     "tõenäosus, et see jagub vähemalt ühega arvudest " + esimeneArv +
-                    ", " + teineArv + " ja " + kolmasArv + ".";
+                    ", " + teineArv + " ja " + kolmasArv + ".\n";
 
             String vihje2 = "Vihje: Tinglik tõenäosus!";
 
@@ -32,9 +33,9 @@ public class Kasutajaliides {
             double katkineTeisest = Math.round(ThreadLocalRandom.current().nextDouble(0.1, 0.5) * 10) / 10.0;
             double katkineKolmandast = Math.round(ThreadLocalRandom.current().nextDouble(0.1, 0.5) * 10) / 10.0;
 
-            String ülesandePüstitus1 = "Toidupoes sai valida piimakoti kolmest sarnasest kastist. On teada,\n" +  " et ühes neist kastidest on " +
-                    "katkise piimakoti saamise tõenäolsus " + katkineEsimesest+ "\n" + " ning ülejäänud kastides vaid  " + katkineTeisest + " ja "
-                    + katkineKolmandast + ". Ostja saigi katkise piimakoti.\n" + " Milline on tõenäolsus, et ta sai selle 'halvast' kastist? \n";
+            String ülesandePüstitus1 = "Toidupoes sai valida piimakoti kolmest sarnasest kastist. On teada,\n" + "et ühes neist kastidest on " +
+                    "katkise piimakoti saamise tõenäolsus " + katkineEsimesest + "\n" + "ning ülejäänud kastides vaid  " + katkineTeisest + " ja "
+                    + katkineKolmandast + ". Ostja saigi katkise piimakoti.\n" + "Milline on tõenäolsus, et ta sai selle 'halvast' kastist? \n";
 
             lahendatavÜlesanne = new ÜL1(katkineEsimesest, katkineTeisest, katkineKolmandast, pealkiri1, ülesandePüstitus1, vihje1);
 
@@ -45,7 +46,7 @@ public class Kasutajaliides {
             double jukuTäpsus = Math.round(ThreadLocalRandom.current().nextDouble(0.1, 0.9) * 10) / 10.0;
             double mikuTäpsus = Math.round(ThreadLocalRandom.current().nextDouble(0.1, 0.9) * 10) / 10.0;
 
-            String ülesandePüstitus3 = "Jukul ja Mikul on mõlemal " + õunteArv + " õuna. Peale õunte söömist viskavad nad õunasüdametega\n " +
+            String ülesandePüstitus3 = "Jukul ja Mikul on mõlemal " + õunteArv + " õuna. Peale õunte söömist viskavad nad õunasüdametega\n" +
                     "paberikorvi täpsust. Juku tabab tõenäolsusega " + jukuTäpsus + " ning Miku tabab tõenäolsusega \n" + mikuTäpsus +
                     ". Leia tõenäolsus, et nad saavad võrdse arvu tabamusi.\n";
 
@@ -62,15 +63,32 @@ public class Kasutajaliides {
 
             if (Double.parseDouble(kasutajalahendus) == lahendatavÜlesanne.lahendus()) {
                 JOptionPane.showMessageDialog(null, "Tubli! " + "\n" + " Sinu vastus on õige!");
+                String valik = JOptionPane.showInputDialog(null,
+                        "Kas soovid mõnda teist ülesannet proovida (jah/ei)?", JOptionPane.QUESTION_MESSAGE);
+                if (valik.equals("jah")) {
+                    ülesandeValik = JOptionPane.showInputDialog(null,
+                            "Sisesta, mitmendat ülesannet soovid lahendada (1-3)", "Uus ülesanne", JOptionPane.QUESTION_MESSAGE);
+                    kasutajaLiides(ülesandeValik);
+                }
                 break;
+
             } else {
                 JOptionPane.showMessageDialog(null,
-                        "Sinu vastus ei ole õige! \n" + "Vihje: Tinglik tõenäosus!",
+                        "Sinu vastus ei ole õige! \n" + lahendatavÜlesanne.getVihje(),
                         "Vale vastus",
                         JOptionPane.WARNING_MESSAGE);
                 String valik = JOptionPane.showInputDialog(null,
                         "Kas soovid ülesannet uuesti proovida (jah/ei)?", JOptionPane.QUESTION_MESSAGE);
-                if (valik.equals("ei")) break;
+                if (valik.equals("ei")) {
+                    valik = JOptionPane.showInputDialog(null,
+                            "Kas soovid mõnda teist ülesannet proovida (jah/ei)?", JOptionPane.QUESTION_MESSAGE);
+                    if (valik.equals("jah")) {
+                        ülesandeValik = JOptionPane.showInputDialog(null,
+                                "Sisesta, mitmendat ülesannet soovid lahendada (1-3)", "Uus ülesanne", JOptionPane.QUESTION_MESSAGE);
+                        kasutajaLiides(ülesandeValik);
+                    }
+                }
+                break;
             }
         }
         JOptionPane.showMessageDialog(null, "Õige vastus on: " + lahendatavÜlesanne.lahendus());
