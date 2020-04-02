@@ -16,7 +16,7 @@ public class Kasutajaliides {
         Ülesanne lahendatavÜlesanne = null;
 
         if (ülesandeValik.equals("2")) {
-            String pealkiri2 = "Ülesanne2";
+            String pealkiri2 = "Ülesanne 2";
             String vihje2 = "Vihje: Tinglik tõenäosus!";
             int esimeneArv = (int) (Math.random()* 1) + 2;
             int teineArv = (int) (Math.random()* 2) + 4;
@@ -28,7 +28,7 @@ public class Kasutajaliides {
 
             lahendatavÜlesanne = new ÜL2(esimeneArv, teineArv, kolmasArv, pealkiri2, ülesandepüstitus2, vihje2);
         } else if (ülesandeValik.equals("1")) {
-            String pealkiri1 = "Ülesanne1";
+            String pealkiri1 = "Ülesanne 1";
             String vihje1 = "Vihje: Kasuta Bayes'i valemit!";
             double katkineEsimesest = Math.round(ThreadLocalRandom.current().nextDouble(0.6, 0.9) * 10) / 10.0;
             double katkineTeisest = Math.round(ThreadLocalRandom.current().nextDouble(0.1, 0.5) * 10) / 10.0;
@@ -41,7 +41,7 @@ public class Kasutajaliides {
             lahendatavÜlesanne = new ÜL1(katkineEsimesest, katkineTeisest, katkineKolmandast, pealkiri1, ülesandePüstitus1, vihje1);
 
         } else if (ülesandeValik.equals("3")) {
-            String pealkiri3 = "Ülesanne3";
+            String pealkiri3 = "Ülesanne 3";
             String vihje3 = "Kasuta Bernoulli valemit eraldi mõlema poisi kõigi tabamuste võimaluste korral.";
             int õunteArv = (int) Math.round(ThreadLocalRandom.current().nextDouble(0.2, 0.6) * 10);
             double jukuTäpsus = Math.round(ThreadLocalRandom.current().nextDouble(0.1, 0.9) * 10) / 10.0;
@@ -54,7 +54,7 @@ public class Kasutajaliides {
             lahendatavÜlesanne = new ÜL3(õunteArv, jukuTäpsus, mikuTäpsus, pealkiri3, ülesandePüstitus3, vihje3);
 
         } else if (ülesandeValik.equals("4")){
-            String pealkiri4 = "Ülesanne4";
+            String pealkiri4 = "Ülesanne 4";
             String vihje4 = "Keskväärtuse leidmiseks ei pea tingimata jaotust leidma!";
             int esimeneValge = 5;
             int esimeneMust = 3;
@@ -67,6 +67,23 @@ public class Kasutajaliides {
                     "on saadud valgete kuulide koguarv. Leida X keskväärtus.\n";
 
             lahendatavÜlesanne = new ÜL4(esimeneValge, esimeneMust, teineValge, teineMust, pealkiri4, ülesndePüstitus4, vihje4);
+        } else if (ülesandeValik.equals("5")) {
+            String pealkiri5 = "Ülesanne 5 ";
+            String vihje5 = "Kui katsete arv on > 100, võib olla mõistlik lahendada Binoomjaotuse asemel Poissoni jaotusega!";
+
+
+            int sülearvutiteArv = (int) Math.round(ThreadLocalRandom.current().nextDouble(10, 95) * 100);
+            double rikkiMinemiseTõenäolsus = Math.round(ThreadLocalRandom.current().nextDouble(0.2, 0.9) * 10)/10.0;
+            int vähemaltMituRikkist = (int) Math.round(ThreadLocalRandom.current().nextDouble(0.1, 0.6) * 10);
+
+
+
+            String ülesandePüstitus5 = "Tehas saatis lattu " + sülearvutiteArv + " töökorras sülearvutit. \n" +
+                    "Tõenäolsus, et teel lattu läheb sülearvuti katki, on " + rikkiMinemiseTõenäolsus + ". \n" +
+                    "Leia tõenäolsus, et  lattu jõuab vähemalt " + vähemaltMituRikkist + " rikkist sülearvutit (ümarda 3 komakohta). \n";
+
+            lahendatavÜlesanne = new ÜL5(sülearvutiteArv, rikkiMinemiseTõenäolsus, vähemaltMituRikkist, pealkiri5,ülesandePüstitus5, vihje5);
+
         }
 
         String kasutajalahendus = "0";

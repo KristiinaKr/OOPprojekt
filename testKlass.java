@@ -7,7 +7,7 @@ public class testKlass {
     public static void main(String[] args) {
 
         String ülesandeValik = JOptionPane.showInputDialog(null,
-                "Sisesta, mitmendat ülesannet soovid lahendada (1-4)", "Alustame!", JOptionPane.QUESTION_MESSAGE);
+                "Sisesta, mitmendat ülesannet soovid lahendada (1-5)", "Alustame!", JOptionPane.QUESTION_MESSAGE);
 
         Kasutajaliides test = new Kasutajaliides(ülesandeValik);
 
