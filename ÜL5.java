@@ -21,8 +21,6 @@ public class ÜL5 extends Ülesanne {
         double lahendus = 0;
         for (int i = 0; i < getKolmasMuutuja(); i++) {
 
-
-            BigInteger esimeneMuutuja = BigInteger.valueOf((long) getEsimeneMuutuja());
             //kombinatsioonide leidmise valem
             nCr = fact((int) getEsimeneMuutuja()).divide(fact(i).multiply( fact((int) getEsimeneMuutuja() - i)));
             System.out.println(nCr);
