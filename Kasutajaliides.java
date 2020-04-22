@@ -5,9 +5,6 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Kasutajaliides {
 
-    public static void kasutajaliides() {
-        //kaustade ümbertõstmise test.21
-    }
 
     private String ülesandepüstitus;
 
