@@ -5,6 +5,10 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Kasutajaliides {
 
+    public static void kasutajaliides() {
+        //kaustade ümbertõstmise test.21
+    }
+
     private String ülesandepüstitus;
 
     public Kasutajaliides(String ülesandepüstitus) {
@@ -39,6 +43,7 @@ public class Kasutajaliides {
                     + katkineKolmandast + ". Ostja saigi katkise piimakoti.\n" + "Milline on tõenäolsus, et ta sai selle 'halvast' kastist? \n";
 
             lahendatavÜlesanne = new ÜL1(katkineEsimesest, katkineTeisest, katkineKolmandast, pealkiri1, ülesandePüstitus1, vihje1);
+
 
         } else if (ülesandeValik.equals("3")) {
             String pealkiri3 = "Ülesanne 3";

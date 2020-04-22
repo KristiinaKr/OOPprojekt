@@ -16,6 +16,7 @@ public abstract class Ülesanne {
         this.pealkiri = pealkiri;
         this.ülesandePüstitus = ülesandePüstitus;
         this.vihje = vihje;
+
     }
 
     public double getEsimeneMuutuja() {
