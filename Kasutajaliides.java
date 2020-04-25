@@ -11,12 +11,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.*;
 import javafx.stage.Stage;
-import org.w3c.dom.ls.LSOutput;
-
-import javax.crypto.spec.PSource;
-import javax.swing.*;
-import java.text.NumberFormat;
 import java.util.concurrent.ThreadLocalRandom;
+
 
 public class Kasutajaliides extends Application {
 
