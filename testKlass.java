@@ -1,11 +1,14 @@
 package OOPprojekt;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -39,8 +42,9 @@ public class testKlass extends Application {
         vbox.getChildren().addAll(sisestus, nupp);
         piiriPaan.setBottom(vbox);
 
+        //Ülesannet saab lahendama minna nii klikkides nupppu kui pressides enterit
         nupp.setOnMouseClicked(event -> {
-            if(!sisestus.getText().equals("")) {
+            if (!sisestus.getText().equals("")) {
 
                 //Kui sisestus ei ole nr 1-5, tuleks vale sisestuse exception catchida ja uuesti küsida
                 Kasutajaliides test = new Kasutajaliides(sisestus.getText());
@@ -56,6 +60,28 @@ public class testKlass extends Application {
             }
             //Kui midagi ei sisestatud, tuleks ka teha exception ja lasta uuesti sisestada
             peaLava.close();
+        });
+
+        //Ülesande lahendama minek enteri vajutamisega
+        sisestus.setOnKeyPressed(event2 -> {
+
+            if (!sisestus.getText().equals("")) {
+                if (event2.getCode().equals(KeyCode.ENTER)) {
+
+                    //Kui sisestus ei ole nr 1-5, tuleks vale sisestuse exception catchida ja uuesti küsida
+                    Kasutajaliides test = new Kasutajaliides(sisestus.getText());
+                    Stage ülesanne = new Stage();
+                    try {
+                        test.start(ülesanne);
+                        peaLava.close();
+                    } catch (Exception e) {
+                        System.out.println("Kasutajaliidesesse liikumise viga");
+                    }
+                    peaLava.close();
+                }
+                //Kui midagi ei sisestatud, tuleks ka teha exception ja lasta uuesti sisestada
+                peaLava.close();
+            }
         });
 
         Scene stseen1 = new Scene(piiriPaan, 310, 180);
