@@ -6,6 +6,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -104,12 +105,14 @@ public class Kasutajaliides extends Application {
             }
         }
 
+
+
         nupp2.setOnMouseClicked(event -> {
 
             ülesanne.close();
             //Siin praegu see variant, kui sisestati õige vastus, aint kuna ma ei arvuta igal testimisel
             //õiget vastust välja siis panin järg reale != mitte ==
-                if (Double.parseDouble(sisestus2.getText()) != lahendatavÜlesanne.lahendus()) {
+                if (Double.parseDouble(sisestus2.getText()) == lahendatavÜlesanne.lahendus()) {
                     Stage õige = new Stage();
                     BorderPane bp = new BorderPane();
                     bp.setPadding(new Insets(10, 20, 10, 20));
@@ -133,7 +136,7 @@ public class Kasutajaliides extends Application {
                     bp.setCenter(tekst2);
                     bp.setBottom(hBox);
 
-
+                    //Saab uut ülesannet lahendada
                     jah.setOnMouseClicked(event2 -> {
                         testKlass testklass = new testKlass();
                         Stage pealava = new Stage();
@@ -145,6 +148,7 @@ public class Kasutajaliides extends Application {
                         }
                     });
 
+                    //Programm lõppeb ära
                     ei.setOnMouseClicked(event3 -> {
                         õige.close();
                         ülesanne.close();
@@ -154,21 +158,74 @@ public class Kasutajaliides extends Application {
                     õige.setScene(stseen2);
                     õige.show();
 
-                    /*
-                     */
-                } /*else {
+                }
+                //KUI SISESTATI VALE VASTUS
+                else {
                     Stage vale = new Stage();
                     BorderPane bp = new BorderPane();
                     bp.setPadding(new Insets(10, 20, 10, 20));
                     bp.setStyle("-fx-background-color: #FBE4F1;");
-                    Text tekst2 = new Text("Vale vastus");
 
-                    /*vbox2.getChildren().add(tekst2);
-                    Scene stseen2 = new Scene(vbox2);
-                    vale.setScene(stseen2);
+                    //Anname vihje
+                    Text tekst2 = new Text("Vale vastus! \n Vihje: " + lahendatavÜlesanne.getVihje());
+                    tekst2.setTextAlignment(TextAlignment.CENTER);
+                    tekst2.setFont(Font.font("verdana", FontWeight.SEMI_BOLD, FontPosture.REGULAR, 13));
+
+                    //Kas proovid uuesti?
+                    Text tekst3 = new Text("Kas soovid uuesti proovida?");
+                    tekst3.setTextAlignment(TextAlignment.CENTER);
+                    tekst3.setFont(Font.font("verdana", FontWeight.SEMI_BOLD, FontPosture.REGULAR, 13));
+
+                    VBox vbox2 = new VBox();
+                    vbox2.setSpacing(10);
+                    vbox2.getChildren().addAll(tekst2, tekst3);
+                    bp.setCenter(vbox2);
+                    HBox hbox3 = new HBox();
+
+                    Button jah = new Button("Jah");
+                    Button ei = new Button(" Ei ");
+                    hbox3.setAlignment(Pos.BOTTOM_CENTER);
+                    hbox3.setSpacing(25);
+                    hbox3.setPadding(new Insets(10,10,20,10));
+                    hbox3.getChildren().addAll(jah, ei);
+                    bp.setBottom(hbox3);
+
+                    //Kui soovib uuesti sama ülesannet proovida, tuleb rewind samasse kohta
+                    jah.setOnMouseClicked(event2 -> {
+                        try {
+                            start(ülesanne);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        vale.close();
+                    });
+
+                    ei.setOnMouseClicked(event3 -> {
+                        BorderPane bp2 = new BorderPane();
+                        bp2.setPadding(new Insets(10, 20, 10, 20));
+                        bp2.setStyle("-fx-background-color: #FBE4F1;");
+
+                        Text vastus = new Text("Õige vastus on: " + lahendatavÜlesanne.lahendus());
+                        vastus.setTextAlignment(TextAlignment.CENTER);
+                        vastus.setFont(Font.font("verdana", FontWeight.SEMI_BOLD, FontPosture.REGULAR, 13));
+
+                        Text veel = new Text("Kas soovid mõnda muud ülesannet veel lahendada?");
+                        veel.setTextAlignment(TextAlignment.CENTER);
+                        veel.setFont(Font.font("verdana", FontWeight.SEMI_BOLD, FontPosture.REGULAR, 13));
+
+                        VBox järjest = new VBox();
+                        järjest.setSpacing(10);
+                        järjest.getChildren().addAll(vastus, veel);
+                        bp2.setCenter(järjest);
+
+                        ülesanne.close();
+                    });
+
+                    Scene stseen3 = new Scene(bp, 300, 160);
+                    vale.setScene(stseen3);
                     vale.show();
-                    ülesanne.close();
-                } */
+
+                }
         });
 
         Scene stseen1 = new Scene(piiriPaan, 550, 200);
