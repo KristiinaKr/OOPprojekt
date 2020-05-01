@@ -17,10 +17,15 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 
 public class testKlass extends Application {
 
     public void start(Stage peaLava) throws Exception {
+
 
         BorderPane piiriPaan = new BorderPane();
         piiriPaan.setPadding(new Insets(10, 20, 35, 20));
@@ -47,15 +52,22 @@ public class testKlass extends Application {
             if (!sisestus.getText().equals("")) {
 
                 //Kui sisestus ei ole nr 1-5, tuleks vale sisestuse exception catchida ja uuesti küsida
+                Set<String> variandid = new HashSet<>();
+                for (int i = 1; i < 6; i++) {
+                    variandid.add(String.valueOf(i));
+                }
                 Kasutajaliides test = new Kasutajaliides(sisestus.getText());
                 Stage ülesanne = new Stage();
                 try {
+                    if (!variandid.contains(sisestus.getText())) {
+                        throw new Exception();
+                    }
                     test.start(ülesanne);
                     peaLava.close();
                 } catch (Exception e) {
                     System.out.println("Kasutajaliidesesse liikumise viga");
-                }
 
+                }
                 peaLava.close();
             }
             //Kui midagi ei sisestatud, tuleks ka teha exception ja lasta uuesti sisestada
@@ -67,11 +79,16 @@ public class testKlass extends Application {
 
             if (!sisestus.getText().equals("")) {
                 if (event2.getCode().equals(KeyCode.ENTER)) {
-
-                    //Kui sisestus ei ole nr 1-5, tuleks vale sisestuse exception catchida ja uuesti küsida
+                    Set<String> variandid = new HashSet<>();
+                    for (int i = 1; i < 6; i++) {
+                        variandid.add(String.valueOf(i));
+                    }
                     Kasutajaliides test = new Kasutajaliides(sisestus.getText());
                     Stage ülesanne = new Stage();
                     try {
+                        if (!variandid.contains(sisestus.getText())) {
+                            throw new Exception();
+                        }
                         test.start(ülesanne);
                         peaLava.close();
                     } catch (Exception e) {
@@ -88,8 +105,6 @@ public class testKlass extends Application {
         peaLava.setTitle("Alustame!");
         peaLava.setScene(stseen1);
         peaLava.show();
-
-
     }
 
     public static void main(String[] args) {

@@ -104,6 +104,7 @@ public class Kasutajaliides extends Application {
                 piiriPaan.setCenter(tekst);
                 break;
             }
+
         }
 
 
