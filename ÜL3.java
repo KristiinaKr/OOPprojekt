@@ -1,11 +1,30 @@
 package OOPprojekt;
 
 
+import java.util.concurrent.ThreadLocalRandom;
+
 public class ÜL3 extends Ülesanne {
+
+    String pealkiri3 = "Ülesanne 3";
+    String vihje3 = "Kasuta Bernoulli valemit eraldi mõlema poisi kõigi tabamuste võimaluste korral.";
+    int õunteArv = (int) Math.round(ThreadLocalRandom.current().nextDouble(0.2, 0.6) * 10);
+    double jukuTäpsus = Math.round(ThreadLocalRandom.current().nextDouble(0.1, 0.9) * 10) / 10.0;
+    double mikuTäpsus = Math.round(ThreadLocalRandom.current().nextDouble(0.1, 0.9) * 10) / 10.0;
+
+    String ülesandePüstitus3 = "Jukul ja Mikul on mõlemal " + õunteArv + " õuna. Peale õunte söömist \n viskavad nad õunasüdametega " +
+            "paberikorvi täpsust. \n Juku tabab tõenäolsusega " + jukuTäpsus + " ning Miku tabab  \n tõenäolsusega " + mikuTäpsus +
+            ". Leia tõenäolsus, et nad saavad \n võrdse arvu tabamusi.\n";
+
 
     // Õunte arv, Juku täpsus, Miku täpsus
     public ÜL3(double esimeneMuutuja, double teineMuutuja, double kolmasMuutuja, String pealkiri, String ülesandePüstitus, String vihje) {
         super(esimeneMuutuja, teineMuutuja, kolmasMuutuja, pealkiri, ülesandePüstitus, vihje);
+        setEsimeneMuutuja(õunteArv);
+        setTeineMuutuja(jukuTäpsus);
+        setKolmasMuutuja(mikuTäpsus);
+        setPealkiri(pealkiri3);
+        setÜlesandePüstitus(ülesandePüstitus3);
+        setVihje(vihje3);
     }
 
     /**

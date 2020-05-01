@@ -55,19 +55,8 @@ public class Kasutajaliides extends Application {
 
         switch (ülesandeValik) {
             case "1": {
-                String pealkiri1 = "Ülesanne 1";
-                String vihje1 = "Vihje: Kasuta Bayes'i valemit!";
-                double katkineEsimesest = Math.round(ThreadLocalRandom.current().nextDouble(0.6, 0.9) * 10) / 10.0;
-                double katkineTeisest = Math.round(ThreadLocalRandom.current().nextDouble(0.1, 0.5) * 10) / 10.0;
-                double katkineKolmandast = Math.round(ThreadLocalRandom.current().nextDouble(0.1, 0.5) * 10) / 10.0;
-
-                String ülesandePüstitus1 = "Toidupoes sai valida piimakoti kolmest sarnasest kastist. On teada,\n" + "et ühes neist kastidest on " +
-                        "katkise piimakoti saamise tõenäolsus " + katkineEsimesest + "\n" + "ning ülejäänud kastides vaid  " + katkineTeisest + " ja "
-                        + katkineKolmandast + ". Ostja saigi katkise piimakoti.\n" + "Milline on tõenäolsus, et ta sai selle 'halvast' kastist? \n";
-
-                lahendatavÜlesanne = new ÜL1(katkineEsimesest, katkineTeisest, katkineKolmandast, pealkiri1, ülesandePüstitus1, vihje1);
-
-                Text tekst = new Text(ülesandePüstitus1);
+                lahendatavÜlesanne = new ÜL1(0, 0, 0, "", "", "");
+                Text tekst = new Text(lahendatavÜlesanne.getÜlesandePüstitus());
                 tekst.setFont(Font.font("verdana", FontWeight.SEMI_BOLD, FontPosture.REGULAR, 13));
                 tekst.setTextAlignment(TextAlignment.CENTER);
                 piiriPaan.setCenter(tekst);
@@ -75,19 +64,9 @@ public class Kasutajaliides extends Application {
             }
 
             case "2": {
-                String pealkiri2 = "Ülesanne 2";
-                String vihje2 = "Vihje: Tinglik tõenäosus!";
-                int esimeneArv = (int) (Math.random() * 1) + 2;
-                int teineArv = (int) (Math.random() * 2) + 4;
-                int kolmasArv = (int) (Math.random() * 3) + 6;
+                lahendatavÜlesanne = new ÜL2(0, 0, 0, "", "", "");
 
-                String ülesandePüstitus2 = "Juhuslikult valitakse arv ühest tuhandeni(kaasa arvatud). \n " +
-                        "Leia tõenäosus, et see jagub vähemalt ühega \n arvudest " + esimeneArv +
-                        ", " + teineArv + " ja " + kolmasArv + ".\n";
-
-                lahendatavÜlesanne = new ÜL2(esimeneArv, teineArv, kolmasArv, pealkiri2, ülesandePüstitus2, vihje2);
-
-                Text tekst = new Text(ülesandePüstitus2);
+                Text tekst = new Text(lahendatavÜlesanne.getÜlesandePüstitus());
                 tekst.setFont(Font.font("verdana", FontWeight.SEMI_BOLD, FontPosture.REGULAR, 13));
                 tekst.setTextAlignment(TextAlignment.CENTER);
                 piiriPaan.setCenter(tekst);
@@ -95,19 +74,9 @@ public class Kasutajaliides extends Application {
             }
 
             case "3": {
-                String pealkiri3 = "Ülesanne 3";
-                String vihje3 = "Kasuta Bernoulli valemit eraldi mõlema poisi kõigi tabamuste võimaluste korral.";
-                int õunteArv = (int) Math.round(ThreadLocalRandom.current().nextDouble(0.2, 0.6) * 10);
-                double jukuTäpsus = Math.round(ThreadLocalRandom.current().nextDouble(0.1, 0.9) * 10) / 10.0;
-                double mikuTäpsus = Math.round(ThreadLocalRandom.current().nextDouble(0.1, 0.9) * 10) / 10.0;
+                lahendatavÜlesanne = new ÜL3(0, 0, 0, "", "", "");
 
-                String ülesandePüstitus3 = "Jukul ja Mikul on mõlemal " + õunteArv + " õuna. Peale õunte söömist \n viskavad nad õunasüdametega " +
-                        "paberikorvi täpsust. \n Juku tabab tõenäolsusega " + jukuTäpsus + " ning Miku tabab  \n tõenäolsusega " + mikuTäpsus +
-                        ". Leia tõenäolsus, et nad saavad \n võrdse arvu tabamusi.\n";
-
-                lahendatavÜlesanne = new ÜL3(õunteArv, jukuTäpsus, mikuTäpsus, pealkiri3, ülesandePüstitus3, vihje3);
-
-                Text tekst = new Text(ülesandePüstitus3);
+                Text tekst = new Text(lahendatavÜlesanne.getÜlesandePüstitus());
                 tekst.setFont(Font.font("verdana", FontWeight.SEMI_BOLD, FontPosture.REGULAR, 13));
                 tekst.setTextAlignment(TextAlignment.CENTER);
                 piiriPaan.setCenter(tekst);
@@ -115,21 +84,9 @@ public class Kasutajaliides extends Application {
             }
 
             case "4": {
-                String pealkiri4 = "Ülesanne 4";
-                String vihje4 = "Keskväärtuse leidmiseks ei pea tingimata jaotust leidma!";
-                int esimeneValge = (int) (Math.random() * 7) + 2;
-                int esimeneMust = (int) (Math.random() * 7) + 2;
-                int teineValge = (int) (Math.random() * 7) + 2;
-                int teineMust = (int) (Math.random() * 7) + 2;
+                lahendatavÜlesanne = new ÜL4(0, 0, 0, 0, "", "", "");
 
-                String ülesndePüstitus4 = "Laual on kaks urni, milles ühes on " + esimeneValge + " valget ja " +
-                        esimeneMust + " musta kuuli ning \nteises on " + teineValge + " valget ja " + teineMust +
-                        " musta kuuli. Kummastki urnist valitakse kaks \nkuuli ning X " +
-                        "on saadud valgete kuulide koguarv. Leida X keskväärtus.\n";
-
-                lahendatavÜlesanne = new ÜL4(esimeneValge, esimeneMust, teineValge, teineMust, pealkiri4, ülesndePüstitus4, vihje4);
-
-                Text tekst = new Text(ülesndePüstitus4);
+                Text tekst = new Text(lahendatavÜlesanne.getÜlesandePüstitus());
                 tekst.setFont(Font.font("verdana", FontWeight.SEMI_BOLD, FontPosture.REGULAR, 13));
                 tekst.setTextAlignment(TextAlignment.CENTER);
                 piiriPaan.setCenter(tekst);
@@ -137,30 +94,15 @@ public class Kasutajaliides extends Application {
             }
 
             case "5": {
-                String pealkiri5 = "Ülesanne 5 ";
-                String vihje5 = "Kui katsete arv on > 100, võib olla mõistlik lahendada Binoomjaotuse asemel Poissoni jaotusega!";
+                lahendatavÜlesanne = new ÜL5(0, 0, 0, "", "", "");
 
-
-                int sülearvutiteArv = (int) Math.round(ThreadLocalRandom.current().nextDouble(10, 95) * 100);
-                double rikkiMinemiseTõenäolsus = Math.round(ThreadLocalRandom.current().nextDouble(0.2, 0.9) * 10) / 10.0;
-                int vähemaltMituRikkist = (int) Math.round(ThreadLocalRandom.current().nextDouble(0.1, 0.6) * 10);
-
-
-                String ülesandePüstitus5 = "Tehas saatis lattu " + sülearvutiteArv + " töökorras sülearvutit. \n" +
-                        "Tõenäolsus, et teel lattu läheb sülearvuti katki, on " + rikkiMinemiseTõenäolsus + ". \n" +
-                        "Leia tõenäolsus, et  lattu jõuab vähemalt " + vähemaltMituRikkist + " rikkist sülearvutit \n (ümarda 3 komakohta). \n";
-
-                lahendatavÜlesanne = new ÜL5(sülearvutiteArv, rikkiMinemiseTõenäolsus, vähemaltMituRikkist, pealkiri5, ülesandePüstitus5, vihje5);
-
-                Text tekst = new Text(ülesandePüstitus5);
+                Text tekst = new Text(lahendatavÜlesanne.getÜlesandePüstitus());
                 tekst.setFont(Font.font("verdana", FontWeight.SEMI_BOLD, FontPosture.REGULAR, 13));
                 tekst.setTextAlignment(TextAlignment.CENTER);
                 piiriPaan.setCenter(tekst);
                 break;
             }
         }
-
-
 
         nupp2.setOnMouseClicked(event -> {
 
@@ -212,15 +154,21 @@ public class Kasutajaliides extends Application {
                     õige.setScene(stseen2);
                     õige.show();
 
-                    /*Stage vale = new Stage();
+                    /*
+                     */
+                } /*else {
+                    Stage vale = new Stage();
+                    BorderPane bp = new BorderPane();
+                    bp.setPadding(new Insets(10, 20, 10, 20));
+                    bp.setStyle("-fx-background-color: #FBE4F1;");
                     Text tekst2 = new Text("Vale vastus");
-                    vbox2.getChildren().add(tekst2);
+
+                    /*vbox2.getChildren().add(tekst2);
                     Scene stseen2 = new Scene(vbox2);
                     vale.setScene(stseen2);
                     vale.show();
                     ülesanne.close();
-                     */
-                }
+                } */
         });
 
         Scene stseen1 = new Scene(piiriPaan, 550, 200);

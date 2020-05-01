@@ -1,11 +1,30 @@
 package OOPprojekt;
 
 public class ÜL4 extends Ülesanne{
+    private String pealkiri4 = "Ülesanne 4";
+    private String vihje4 = "Keskväärtuse leidmiseks ei pea tingimata jaotust leidma!";
+    private int esimeneValge = (int) (Math.random() * 7) + 2;
+    private int esimeneMust = (int) (Math.random() * 7) + 2;
+    private int teineValge = (int) (Math.random() * 7) + 2;
+    private int teineMust = (int) (Math.random() * 7) + 2;
+
+    private String ülesandePüstitus4 = "Laual on kaks urni, milles ühes on " + esimeneValge + " valget ja " +
+            esimeneMust + " musta kuuli ning \nteises on " + teineValge + " valget ja " + teineMust +
+            " musta kuuli. Kummastki urnist valitakse kaks \nkuuli ning X " +
+            "on saadud valgete kuulide koguarv. Leida X keskväärtus.\n";
+
     private int neljasMuutja;
 
     public ÜL4(double esimeneMuutuja, double teineMuutuja, double kolmasMuutuja, int neljasMuutja, String pealkiri, String ülesandePüstitus, String vihje) {
         super(esimeneMuutuja, teineMuutuja, kolmasMuutuja, pealkiri, ülesandePüstitus, vihje);
-        this.neljasMuutja = neljasMuutja;
+        setEsimeneMuutuja(esimeneValge);
+        setTeineMuutuja(esimeneMust);
+        setKolmasMuutuja(teineValge);
+        this.teineMust = neljasMuutja;
+        setPealkiri(pealkiri4);
+        setÜlesandePüstitus(ülesandePüstitus4);
+        setVihje(vihje4);
+
     }
 
     /**
