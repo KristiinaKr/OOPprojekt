@@ -6,19 +6,22 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.*;
 import javafx.stage.Stage;
+import java.io.*;
+import java.util.HashMap;
+import java.util.Map;
 
-import java.io.DataOutputStream;
 
 
-public class Kasutajaliides  extends Application {
+public class Kasutajaliides extends Application {
 
     Ülesanne lahendatavÜlesanne = null;
+
+    Map<String, Double> vastused = new HashMap<>();
 
     private String ülesandeValik;
 
@@ -103,166 +106,192 @@ public class Kasutajaliides  extends Application {
 
         nupp2.setOnMouseClicked(event -> {
 
-                //ESIMENE VARIANT: SISESTATI ÕIGE VASTUS
-                Double vastusDouble = Double.parseDouble(sisestus2.getText());
+            //ESIMENE VARIANT: SISESTATI ÕIGE VASTUS
+            double vastusDouble = Double.parseDouble(sisestus2.getText());
 
-                if (vastusDouble == lahendatavÜlesanne.lahendus()) {
-                    Stage õige = new Stage();
-                    BorderPane bp = new BorderPane();
-                    bp.setPadding(new Insets(10, 20, 10, 20));
-                    bp.setStyle("-fx-background-color: #FBE4F1;");
+            //Vastus lisatakse õigete vastuste kujutusse ning loetakse faili
+            if (vastusDouble == lahendatavÜlesanne.lahendus()) {
+
+                vastused.put(lahendatavÜlesanne.getPealkiri(), vastusDouble);
+                try {
+                    salvesta(vastused);
+                } catch (IOException e) {
+                    System.out.println("Faili kirjutamisel tekkis viga!");
+                }
+
+                Stage õige = new Stage();
+                BorderPane bp = new BorderPane();
+                bp.setPadding(new Insets(10, 20, 10, 20));
+                bp.setStyle("-fx-background-color: #FBE4F1;");
 
 
-                    Text tekst2 = new Text("Tubli! Õige vastus! \n " +
-                            "Kas soovid veel ülesandeid lahendada?");
-                    tekst2.setTextAlignment(TextAlignment.CENTER);
-                    tekst2.setFont(Font.font("verdana", FontWeight.SEMI_BOLD, FontPosture.REGULAR, 13));
+                Text tekst2 = new Text("Tubli! Õige vastus! \n " +
+                        "Kas soovid veel ülesandeid lahendada?");
+                tekst2.setTextAlignment(TextAlignment.CENTER);
+                tekst2.setFont(Font.font("verdana", FontWeight.SEMI_BOLD, FontPosture.REGULAR, 13));
 
 
-                    Button jah = new Button("Jah");
-                    Button ei = new Button(" Ei ");
-                    HBox hBox = new HBox();
-                    hBox.setAlignment(Pos.BOTTOM_CENTER);
-                    hBox.setSpacing(25);
-                    hBox.setPadding(new Insets(10, 10, 20, 10));
-                    hBox.getChildren().addAll(jah, ei);
+                Button jah = new Button("Jah");
+                Button ei = new Button(" Ei ");
+                HBox hBox = new HBox();
+                hBox.setAlignment(Pos.BOTTOM_CENTER);
+                hBox.setSpacing(25);
+                hBox.setPadding(new Insets(10, 10, 20, 10));
+                hBox.getChildren().addAll(jah, ei);
 
-                    bp.setCenter(tekst2);
-                    bp.setBottom(hBox);
+                bp.setCenter(tekst2);
+                bp.setBottom(hBox);
 
-                    //LAHEDAS ÕIGESTI - VÕTAB UUE ÜLESANDE
-                    //Saab uut ülesannet lahendada
-                    jah.setOnMouseClicked(event2 -> {
+
+                //LAHEDAS ÕIGESTI - VÕTAB UUE ÜLESANDE
+                //Saab uut ülesannet lahendada
+                jah.setOnMouseClicked(event2 -> {
+                    testKlass testklass = new testKlass();
+                    Stage pealava = new Stage();
+                    try {
+                        testklass.start(pealava);
+                        ülesanne.close();
+                        õige.close();
+
+                    } catch (Exception e) {
+                        System.out.println("Midagi läks valesti.");
+                    }
+                });
+
+                //EI SOOVI ROHKEM LAHENDADA
+                //Programm lõppeb ära
+                ei.setOnMouseClicked(event3 -> {
+                    try (DataInputStream dis = new DataInputStream(new FileInputStream("vastused.dat"))) {
+                        prindiViimaneTulemus(dis);
+                    } catch (Exception e) {
+                        System.out.println("Failist lugemine ei õnnestunud.");
+                    }
+                    õige.close();
+                    ülesanne.close();
+                });
+
+                Scene stseen2 = new Scene(bp, 300, 160);
+                õige.setScene(stseen2);
+                õige.show();
+            }
+
+            //VARIANT 2: KUI SISESTATI VALE VASTUS
+            else {
+                vastused.put(lahendatavÜlesanne.getPealkiri(), vastusDouble);
+                try {
+                    salvesta(vastused);
+                } catch (IOException e) {
+                    System.out.println("Faili kirjutamisel tekkis viga!");
+                }
+
+                Stage vale = new Stage();
+                BorderPane bp5 = new BorderPane();
+                bp5.setPadding(new Insets(10, 20, 10, 20));
+                bp5.setStyle("-fx-background-color: #FBE4F1;");
+
+                //Anname vihje
+                Text tekst2 = new Text("Vale vastus! \n\n Vihje: " + lahendatavÜlesanne.getVihje());
+                tekst2.setTextAlignment(TextAlignment.CENTER);
+                tekst2.setFont(Font.font("verdana", FontWeight.SEMI_BOLD, FontPosture.REGULAR, 13));
+                bp5.setCenter(tekst2);
+
+                //Kas proovid uuesti?
+                Text tekst3 = new Text("Kas soovid uuesti proovida?");
+                tekst3.setTextAlignment(TextAlignment.CENTER);
+                tekst3.setFont(Font.font("verdana", FontWeight.SEMI_BOLD, FontPosture.REGULAR, 13));
+
+
+                Button jah = new Button("Jah");
+                Button ei = new Button(" Ei ");
+                HBox hbox3 = new HBox();
+                hbox3.setAlignment(Pos.BOTTOM_CENTER);
+                hbox3.setSpacing(25);
+                hbox3.setPadding(new Insets(10, 10, 20, 10));
+                hbox3.getChildren().addAll(jah, ei);
+
+                VBox vbox2 = new VBox();
+                vbox2.setSpacing(10);
+                vbox2.setAlignment(Pos.CENTER);
+                vbox2.getChildren().addAll(tekst3, hbox3);
+                bp5.setBottom(vbox2);
+
+
+                //Kui soovib uuesti sama ülesannet proovida, tuleb rewind ülesande teksti juurde
+                jah.setOnMouseClicked(event2 -> {
+                    vale.close();
+                });
+
+
+                //EI TAHA UUESTI SAMA ÜL LAHENDADA
+                ei.setOnMouseClicked(event2 -> {
+                    ülesanne.close();
+                    vale.close();
+                    Stage vastuseLava = new Stage();
+                    BorderPane bp4 = new BorderPane();
+                    bp4.setPadding(new Insets(10, 20, 10, 20));
+                    bp4.setStyle("-fx-background-color: #FBE4F1;");
+
+                    Text vastus = new Text("Õige vastus on: " + lahendatavÜlesanne.lahendus());
+                    vastus.setTextAlignment(TextAlignment.CENTER);
+                    vastus.setFont(Font.font("verdana", FontWeight.SEMI_BOLD, FontPosture.REGULAR, 13));
+                    bp4.setCenter(vastus);
+
+                    Text veel = new Text("Kas soovid mõnda muud ülesannet \nveel lahendada?");
+                    veel.setTextAlignment(TextAlignment.CENTER);
+                    veel.setFont(Font.font("verdana", FontWeight.SEMI_BOLD, FontPosture.REGULAR, 13));
+
+                    HBox hbox4 = new HBox();
+                    Button jah2 = new Button("Jah");
+                    Button ei2 = new Button(" Ei ");
+                    hbox4.setAlignment(Pos.BOTTOM_CENTER);
+                    hbox4.setSpacing(25);
+                    hbox4.setPadding(new Insets(10, 10, 20, 10));
+                    hbox4.getChildren().addAll(jah2, ei2);
+
+                    VBox järjest = new VBox();
+                    järjest.setSpacing(10);
+                    järjest.setAlignment(Pos.CENTER);
+                    järjest.getChildren().addAll(veel, hbox4);
+                    bp4.setBottom(järjest);
+
+
+                    // TAHAD MUUD ÜLESANNET LAHENDADA: TAGASI ALGUSESSE
+                    jah2.setOnMouseClicked(event3 -> {
                         testKlass testklass = new testKlass();
                         Stage pealava = new Stage();
                         try {
                             testklass.start(pealava);
-                            ülesanne.close();
-                            õige.close();
+                            vale.close();
+                            vastuseLava.close();
 
                         } catch (Exception e) {
                             System.out.println("Midagi läks valesti.");
                         }
                     });
 
-                    //EI SOOVI ROHKEM LAHENDADA
-                    //Programm lõppeb ära
-                    ei.setOnMouseClicked(event3 -> {
-                        õige.close();
+                    //EI TAHA ROHKEM MIDAGI LAHENDADA
+                    //KÕIK LÄHEB KINNI, PROGRAMMI TÖÖ LÕPPENUD
+                    ei2.setOnMouseClicked(event4 -> {
+                        try (DataInputStream dis = new DataInputStream(new FileInputStream("vastused.dat"))) {
+                            prindiViimaneTulemus(dis);
+                        } catch (Exception e) {
+                            System.out.println("Failist lugemine ei õnnestunud.");
+                        }
                         ülesanne.close();
+                        vale.close();
+                        vastuseLava.close();
                     });
 
-                    Scene stseen2 = new Scene(bp, 300, 160);
-                    õige.setScene(stseen2);
-                    õige.show();
-                }
+                    Scene stseen3 = new Scene(bp4, 300, 160);
+                    vastuseLava.setScene(stseen3);
+                    vastuseLava.show();
+                });
 
-                //VARIANT 2: KUI SISESTATI VALE VASTUS
-                else {
-
-                        Stage vale = new Stage();
-                        BorderPane bp5 = new BorderPane();
-                        bp5.setPadding(new Insets(10, 20, 10, 20));
-                        bp5.setStyle("-fx-background-color: #FBE4F1;");
-
-                        //Anname vihje
-                        Text tekst2 = new Text("Vale vastus! \n\n Vihje: " + lahendatavÜlesanne.getVihje());
-                        tekst2.setTextAlignment(TextAlignment.CENTER);
-                        tekst2.setFont(Font.font("verdana", FontWeight.SEMI_BOLD, FontPosture.REGULAR, 13));
-                        bp5.setCenter(tekst2);
-
-                        //Kas proovid uuesti?
-                        Text tekst3 = new Text("Kas soovid uuesti proovida?");
-                        tekst3.setTextAlignment(TextAlignment.CENTER);
-                        tekst3.setFont(Font.font("verdana", FontWeight.SEMI_BOLD, FontPosture.REGULAR, 13));
-
-
-                        Button jah = new Button("Jah");
-                        Button ei = new Button(" Ei ");
-                        HBox hbox3 = new HBox();
-                        hbox3.setAlignment(Pos.BOTTOM_CENTER);
-                        hbox3.setSpacing(25);
-                        hbox3.setPadding(new Insets(10, 10, 20, 10));
-                        hbox3.getChildren().addAll(jah, ei);
-
-                        VBox vbox2 = new VBox();
-                        vbox2.setSpacing(10);
-                        vbox2.setAlignment(Pos.CENTER);
-                        vbox2.getChildren().addAll(tekst3, hbox3);
-                        bp5.setBottom(vbox2);
-
-
-                        //Kui soovib uuesti sama ülesannet proovida, tuleb rewind ülesande teksti juurde
-                        jah.setOnMouseClicked(event2 -> {
-                            vale.close();
-                        });
-
-
-                        //EI TAHA UUESTI SAMA ÜL LAHENDADA
-                        ei.setOnMouseClicked(event2 -> {
-                            ülesanne.close();
-                            vale.close();
-                            Stage vastuseLava = new Stage();
-                            BorderPane bp4 = new BorderPane();
-                            bp4.setPadding(new Insets(10, 20, 10, 20));
-                            bp4.setStyle("-fx-background-color: #FBE4F1;");
-
-                            Text vastus = new Text("Õige vastus on: " + lahendatavÜlesanne.lahendus());
-                            vastus.setTextAlignment(TextAlignment.CENTER);
-                            vastus.setFont(Font.font("verdana", FontWeight.SEMI_BOLD, FontPosture.REGULAR, 13));
-                            bp4.setCenter(vastus);
-
-                            Text veel = new Text("Kas soovid mõnda muud ülesannet \nveel lahendada?");
-                            veel.setTextAlignment(TextAlignment.CENTER);
-                            veel.setFont(Font.font("verdana", FontWeight.SEMI_BOLD, FontPosture.REGULAR, 13));
-
-                            HBox hbox4 = new HBox();
-                            Button jah2 = new Button("Jah");
-                            Button ei2 = new Button(" Ei ");
-                            hbox4.setAlignment(Pos.BOTTOM_CENTER);
-                            hbox4.setSpacing(25);
-                            hbox4.setPadding(new Insets(10, 10, 20, 10));
-                            hbox4.getChildren().addAll(jah2, ei2);
-
-                            VBox järjest = new VBox();
-                            järjest.setSpacing(10);
-                            järjest.setAlignment(Pos.CENTER);
-                            järjest.getChildren().addAll(veel, hbox4);
-                            bp4.setBottom(järjest);
-
-
-                            // TAHAD MUUD ÜLESANNET LAHENDADA: TAGASI ALGUSESSE
-                            jah2.setOnMouseClicked(event3 -> {
-                                testKlass testklass = new testKlass();
-                                Stage pealava = new Stage();
-                                try {
-                                    testklass.start(pealava);
-                                    vale.close();
-                                    vastuseLava.close();
-
-                                } catch (Exception e) {
-                                    System.out.println("Midagi läks valesti.");
-                                }
-                            });
-
-                            //EI TAHA ROHKEM MIDAGI LAHENDADA
-                            //KÕIK LÄHEB KINNI, PROGRAMMI TÖÖ LÕPPENUD
-                            ei2.setOnMouseClicked(event4 -> {
-                                ülesanne.close();
-                                vale.close();
-                                vastuseLava.close();
-                            });
-
-                            Scene stseen3 = new Scene(bp4, 300, 160);
-                            vastuseLava.setScene(stseen3);
-                            vastuseLava.show();
-                        });
-
-                        Scene stseen3 = new Scene(bp5, 400, 200);
-                        vale.setScene(stseen3);
-                        vale.show();
-                    }
-                 });
+                Scene stseen3 = new Scene(bp5, 400, 200);
+                vale.setScene(stseen3);
+                vale.show();
+            }
+        });
 
         Scene stseen1 = new Scene(piiriPaan, 550, 190);
         ülesanne.setTitle("Siin on sinu ülesanne");
@@ -270,20 +299,25 @@ public class Kasutajaliides  extends Application {
         ülesanne.show();
     }
 
-    /*
-    public static boolean kasNumber (TextField sisestus2) throws Exception {
-        boolean tõeväärtus = false;
-        String sisestus = sisestus2.getText();
-        for (int i =0; i< sisestus.length(); i++) {
-            if (Character.isDigit(sisestus.charAt(i))) tõeväärtus = true;
-            else {
-                throw new ValeVastuseErind("Sisestatud vastus peab sisaldama vaid numbreid");
+
+    //Salvestame iga ülesande viimase lahenduskatse vastuse faili.
+    private static void salvesta(Map<String, Double> vastused) throws IOException {
+        try (DataOutputStream dos = new DataOutputStream(new FileOutputStream("Vastused.dat"))) {
+            for (String ülesanne : vastused.keySet()) {
+                dos.writeUTF(ülesanne);
+                dos.writeDouble(vastused.get(ülesanne));
             }
         }
-        return tõeväärtus;
+        System.out.println("Vastus salevstatud!");
     }
 
-     */
+    private static void prindiViimaneTulemus(DataInputStream dis) throws Exception {
+
+        String ülesanne = dis.readUTF();
+        Double vastus = dis.readDouble();
+        System.out.println("Ülesanne: " + ülesanne + ", minu vastus: " + vastus);
+    }
+
 
     public static void main(String[] args) {
         launch(args);
