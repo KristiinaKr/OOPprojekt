@@ -6,7 +6,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class ÜL5 extends Ülesanne {
     String pealkiri5 = "Ülesanne 5 ";
-    String vihje5 = "Kui katsete arv on > 100, võib olla mõistlik lahendada Binoomjaotuse asemel Poissoni jaotusega!";
+    String vihje5 = "Kui katsete arv on > 100, \nvõib olla mõistlik lahendada\n Binoomjaotuse asemel Poissoni jaotusega!\n";
     int sülearvutiteArv = (int) Math.round(ThreadLocalRandom.current().nextDouble(10, 95) * 100);
     double rikkiMinemiseTõenäolsus = Math.round(ThreadLocalRandom.current().nextDouble(0.2, 0.9) * 10) / 10.0;
     int vähemaltMituRikkist = (int) Math.round(ThreadLocalRandom.current().nextDouble(0.1, 0.6) * 10);

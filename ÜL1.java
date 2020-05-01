@@ -6,7 +6,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class ÜL1 extends Ülesanne {
     private String pealkiri1 = "Ülesanne 1";
-    private String vihje1 = "Vihje: Kasuta Bayes'i valemit!";
+    private String vihje1 = "Vihje: Kasuta Bayes'i valemit!\n";
     private double katkineEsimesest = Math.round(ThreadLocalRandom.current().nextDouble(0.6, 0.9) * 10) / 10.0;
     private double katkineTeisest = Math.round(ThreadLocalRandom.current().nextDouble(0.1, 0.5) * 10) / 10.0;
     private double katkineKolmandast = Math.round(ThreadLocalRandom.current().nextDouble(0.1, 0.5) * 10) / 10.0;

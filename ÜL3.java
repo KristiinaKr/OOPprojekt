@@ -6,7 +6,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class ÜL3 extends Ülesanne {
 
     String pealkiri3 = "Ülesanne 3";
-    String vihje3 = "Kasuta Bernoulli valemit eraldi mõlema poisi kõigi tabamuste võimaluste korral.";
+    String vihje3 = "Kasuta Bernoulli valemit eraldi \n mõlema poisi kõigi tabamuste \n võimaluste korral.\n";
     int õunteArv = (int) Math.round(ThreadLocalRandom.current().nextDouble(0.2, 0.6) * 10);
     double jukuTäpsus = Math.round(ThreadLocalRandom.current().nextDouble(0.1, 0.9) * 10) / 10.0;
     double mikuTäpsus = Math.round(ThreadLocalRandom.current().nextDouble(0.1, 0.9) * 10) / 10.0;

@@ -2,7 +2,7 @@ package OOPprojekt;
 
 public class ÜL4 extends Ülesanne{
     private String pealkiri4 = "Ülesanne 4";
-    private String vihje4 = "Keskväärtuse leidmiseks ei pea tingimata jaotust leidma!";
+    private String vihje4 = "Keskväärtuse leidmiseks \nei pea tingimata jaotust leidma!\n";
     private int esimeneValge = (int) (Math.random() * 7) + 2;
     private int esimeneMust = (int) (Math.random() * 7) + 2;
     private int teineValge = (int) (Math.random() * 7) + 2;

@@ -2,7 +2,7 @@ package OOPprojekt;
 
 public class ÜL2 extends Ülesanne {
     private String pealkiri2 = "Ülesanne 2";
-    private String vihje2 = "Vihje: Tinglik tõenäosus!";
+    private String vihje2 = "Vihje: Tinglik tõenäosus!\n";
     private int esimeneArv = (int) (Math.random() * 1) + 2;
     private int teineArv = (int) (Math.random() * 2) + 4;
     private int kolmasArv = (int) (Math.random() * 3) + 6;
