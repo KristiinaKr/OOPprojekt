@@ -13,20 +13,12 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.*;
 import javafx.stage.Stage;
 
-import java.util.concurrent.ThreadLocalRandom;
-
 
 public class Kasutajaliides extends Application {
 
-    //private String ülesandepüstitus;
     Ülesanne lahendatavÜlesanne = null;
 
     private String ülesandeValik;
-
-    /*KONSTRUKTOR vana
-    public Kasutajaliides(String ülesandepüstitus) {
-        this.ülesandepüstitus = ülesandepüstitus;
-    } */
 
     public Kasutajaliides(String ülesandeValik) {
         this.ülesandeValik = ülesandeValik;

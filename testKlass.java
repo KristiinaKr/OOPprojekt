@@ -1,7 +1,6 @@
 package OOPprojekt;
 
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -96,16 +95,4 @@ public class testKlass extends Application {
         launch(args);
 
     }
-
-    /*
-    public static void main(String[] args) {
-
-        String ülesandeValik = JOptionPane.showInputDialog(null,
-                "Sisesta, mitmendat ülesannet soovid lahendada (1-5)", "Alustame!", JOptionPane.QUESTION_MESSAGE);
-
-        Kasutajaliides test = new Kasutajaliides(ülesandeValik);
-
-        test.kasutajaLiides(ülesandeValik);
-    }
-     */
 }
